@@ -1,0 +1,23 @@
+{
+  "name": "playwright_automation",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "playwright test --retries=0",
+    "test:login": "playwright test \"Playwright_Tests/Login_Page\" --workers=1 --retries=0",
+    "test:login:headed": "set SLOWMO=700&& playwright test \"Playwright_Tests/Login_Page\" --workers=1 --headed --project=chromium --retries=0",
+    "test:forgot": "playwright test \"Playwright_Tests/Forgot_Password_Page_UI\" --retries=0",
+    "report": "playwright show-report"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@playwright/test": "^1.62.1",
+    "@types/node": "^26.4.1"
+  },
+  "dependencies": {
+    "playwright": "^1.63.0"
+  }
+}
