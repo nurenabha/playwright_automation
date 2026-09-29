@@ -3,7 +3,7 @@ import { reportingTool } from '../../config/config';
 import { checkContrast, ContrastCheck } from '../../utils/contrastCheck';
 
 test(
-    'TC_FPWD_054 - Verify color contrast meets WCAG 2.1 AA',
+    'TC_FPWD_054 - Verify colour contrast of all text meets WCAG 2.1 AA standards',
     async ({ page }) => {
 
         // Default State
@@ -19,14 +19,14 @@ test(
         const defaultStateChecks: ContrastCheck[] = [
             [backToLoginButton, 'Back to login button (default state)'],
             [heading, 'Reset your password heading'],
-            [description, 'Recovery description', undefined, 'ISSUE-61'],
-            [emailLabel, 'Email label', undefined, 'ISSUE-61'],
-            [emailInput, 'Email placeholder', '::placeholder', 'ISSUE-62'],
+            [description, 'Recovery description'],
+            [emailLabel, 'Email label'],
+            [emailInput, 'Email placeholder', '::placeholder'],
             [sendRecoveryButton, 'Send recovery link button'],
         ];
 
-        for (const [locator, elementName, pseudoElement, knownIssue] of defaultStateChecks) {
-            await checkContrast(locator, elementName, pseudoElement, knownIssue);
+        for (const [locator, elementName, pseudoElement] of defaultStateChecks) {
+            await checkContrast(locator, elementName, pseudoElement);
         }
 
         // Success State

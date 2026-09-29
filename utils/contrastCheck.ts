@@ -1,4 +1,4 @@
-import { test, expect, Locator } from '@playwright/test';
+import { expect, Locator } from '@playwright/test';
 
 function getLuminance(rgb: number[]): number {
     const values = rgb.map(value => {
@@ -41,16 +41,14 @@ function parseRGB(color: string): number[] {
     ];
 }
 
-export type ContrastCheck = [locator: Locator, elementName: string, pseudoElement?: string | null, knownIssue?: string];
+export type ContrastCheck = [locator: Locator, elementName: string, pseudoElement?: string | null];
 
 // pseudoElement: pass '::placeholder' to check an input's placeholder text instead of its own text
-// knownIssue: tracking id (e.g. 'ISSUE-61') for a check that's expected to currently fail;
-// uses a soft assertion so the rest of the suite still runs, and tags the failure with its own annotation
+// Uses a soft assertion so every element is checked and reported, not just the first failure
 export async function checkContrast(
     locator: Locator,
     elementName: string,
-    pseudoElement: string | null = null,
-    knownIssue?: string
+    pseudoElement: string | null = null
 ) {
     if (pseudoElement) {
         await expect(locator).toBeVisible();
@@ -89,22 +87,7 @@ export async function checkContrast(
         `${elementName}: ${result.color} on ${result.backgroundColor} = ${contrastRatio.toFixed(2)}:1`
     );
 
-    if (knownIssue) {
-        test.info().annotations.push({
-            type: 'known-issue',
-            description: `${knownIssue}: "${elementName}" measured ${contrastRatio.toFixed(2)}:1 ` +
-                `(${result.color} on ${result.backgroundColor}), requires >= 4.5:1. ` +
-                `Tracked separately; this failure does not block the other checks in this test.`
-        });
-
-        expect.soft(
-            contrastRatio,
-            `${elementName} contrast ratio is below WCAG 2.1 AA requirement (tracked as ${knownIssue})`
-        ).toBeGreaterThanOrEqual(4.5);
-        return;
-    }
-
-    expect(
+    expect.soft(
         contrastRatio,
         `${elementName} contrast ratio is below WCAG 2.1 AA requirement`
     ).toBeGreaterThanOrEqual(4.5);
