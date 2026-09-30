@@ -16,6 +16,8 @@ export function loginPage(page: Page) {
         certificateButton: page.getByRole('button', { name: 'Sign in with certificate' }),
         enterpriseButton: page.getByRole('button', { name: 'Enterprise sign-in' }),
         invalidCredentialsError: page.getByText(/invalid username or password/i),
+        // Any error shown under the form (bad credentials, server or network failure)
+        formError: page.locator('form.login-panel .form-error'),
     };
 }
 

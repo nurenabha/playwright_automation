@@ -7,8 +7,8 @@ export const reportingTool = {
 
 
 export const loginData = {
-    validEmail: process.env.LOGIN_EMAIL ?? reportingTool.validEmail,
-    validPassword: process.env.LOGIN_PASSWORD ?? '',
+    validEmail: 'admin@sysenact.com',
+    validPassword: 'Admin@123',
     unknownEmail: 'invalid@example.com',
     nonexistentEmail: 'nonexistent@example.com',
     wrongPassword: 'WrongPassword123',

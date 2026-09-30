@@ -6,7 +6,7 @@ test('TC_LIPG_011 - Verify Email required validation', async ({ page }) => {
     await page.goto(reportingTool.loginUrl);
     const login = loginPage(page);
 
-    await login.password.fill(loginData.sampleMaskedPassword);
+    await login.password.fill(loginData.validPassword);
     await submitLogin(page, () => login.loginButton.click());
 
     // The app reports the email as "username" ("username must not be blank")

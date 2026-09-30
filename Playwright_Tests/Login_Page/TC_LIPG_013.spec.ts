@@ -13,7 +13,7 @@ test('TC_LIPG_013 - Verify invalid email format validation', async ({ page }) =>
     });
 
     await login.email.fill(loginData.malformedEmail);
-    await login.password.fill(loginData.sampleMaskedPassword);
+    await login.password.fill(loginData.validPassword);
     await login.loginButton.click();
 
     // Browser's native email validation rejects the value and blocks submission
