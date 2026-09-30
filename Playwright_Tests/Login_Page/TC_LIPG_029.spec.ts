@@ -12,7 +12,7 @@ test('TC_LIPG_029 - Verify authentication service unavailable handling', async (
     );
 
     await login.email.fill(loginData.validEmail);
-    await login.password.fill(loginData.validFormatPassword);
+    await login.password.fill(loginData.validPassword);
     await login.loginButton.click();
 
     // An error is shown, and it does not wrongly blame the credentials
