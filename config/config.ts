@@ -13,6 +13,6 @@ export const loginData = {
     nonexistentEmail: 'nonexistent@example.com',
     wrongPassword: 'WrongPassword123',
     validFormatPassword: 'ValidPassword123',
-    malformedEmail: 'abc.com',
+    malformedEmail: 'user@org',
     sampleMaskedPassword: 'Password123'
 };
